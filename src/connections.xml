@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/share/tsung/tsung-1.0.dtd" [] >
+<tsung loglevel="info">
+    <clients>
+        <client host="localhost"  maxusers="1024" use_controller_vm="true"/>
+    </clients>
+    <servers>
+        <server host="localhost" port="8081" type="tcp"/>
+    </servers>
+
+    <monitoring>
+        <monitor host="localhost" type="erlang"></monitor>
+    </monitoring>
+
+    <load>
+        <arrivalphase phase="1" duration="30" unit="second">
+            <users arrivalrate="100" unit="second"></users>
+        </arrivalphase>
+        <!-- <arrivalphase phase="2" duration="30" unit="second">
+            <users arrivalrate="500" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="3" duration="30" unit="second">
+            <users arrivalrate="1000" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="4" duration="30" unit="second">
+            <users arrivalrate="100" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="5" duration="600" unit="second">
+            <users arrivalrate="300" unit="second"></users>
+        </arrivalphase> -->
+    </load>
+
+    <options>
+        <option name="connect_timeout" value="4000" />
+        <option name="max_retries" value="0" />
+    </options>
+
+    <sessions>
+        <session name="connections" probability="100" type="ts_http">
+            <transaction name="connections">
+                <request>
+                    <!-- User 2 views friend requests-->
+                    <http url="/api/connections/getFriendRequests" method="GET" version="1.1">
+                        <http_header name="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1NTY5Nzc5LCJpYXQiOjE1MjUyMDk3NzksImVtYWlsIjoidXNlcjJAZW1haWwuY29tIiwianRpIjoiMTQyMDM0YWQtYzQ3Mi00MGFhLWFjZDMtOTNkM2YwYzY4MWI4In0.UDmRwbLmk8BoF-x1H4pFuu5E_3MlVB-TVxLtLDl94vF63bhUycnDfUmulBLLS_DGtY-VKySTZw4A8aBH-PeBDQ"/>
+                    </http>
+                </request>
+                <request>
+                    <!-- User 1 views friend list-->
+                    <http url="/api/connections/getFriendsList" method="GET" version="1.1">
+                        <http_header name="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1NTY5NzUzLCJpYXQiOjE1MjUyMDk3NTMsImVtYWlsIjoidXNlcjFAZW1haWwuY29tIiwianRpIjoiM2ExMDk4YWQtOGRlNS00NjcxLTk4MzItNThmZDY2NWUxOGFlIn0.IIZllBjKVahIMPFlXj63reeBgPZTDfKu65VazuNmz33kK-ZWolN_xk13Jlqwps85NozML6XNOKd7vXqMWW_Mog"/>
+                    </http>
+                </request>
+            </transaction>
+        </session>
+    </sessions>
+</tsung>
