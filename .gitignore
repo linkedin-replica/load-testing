@@ -4,4 +4,4 @@ gnuplot_scripts/
 images/
 *.log
 *.html
-
+*.dump

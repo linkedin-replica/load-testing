@@ -34,22 +34,21 @@
         <option name="connect_timeout" value="4000" />
         <option name="max_retries" value="0" />
     </options>
-
     <sessions>
-        <session name="login" probability="50" type="ts_http">
-            <transaction name="login">
+        <session name="get" probability="50" type="ts_http">
+            <transaction name="get">
                 <request>
-                    <http url="/api/signing/signIn" method="POST" version="1.1"
-                        content_type='application/json'
-                        contents_from_file='../contents/login_content.json'>
+                    <http url="/api/notifications/all" method="GET" version="1.1">
+                        <http_header name="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1MTkyMjQ3LCJpYXQiOjE1MjUxODg2NDcsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwianRpIjoiZDY4OWIzMTktMDM5OC00ZTRjLTkyYmMtN2M1YTkxNzVkNDEyIn0.OvPQb_nipM02O5NB88dgnVYsVd7RD93xj7NbK9X-sMiatRGeVOGMgjBr2ZQGBBRXcHbSObXt9hFYhGXlBcJhPg"/>
                     </http>
                 </request>
             </transaction>
         </session>
-        <session name="logout" probability="50" type="ts_http">
-            <transaction name="logout">
+        <session name="markread" probability="50" type="ts_http">
+            <transaction name="markread">
                 <request>
-                    <http url="/api/signing/signOut" method="GET" version="1.1">
+                    <http url="/api/notifications/markRead" method="GET" version="1.1">
+                        <http_header name="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1MTkyMjQ3LCJpYXQiOjE1MjUxODg2NDcsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwianRpIjoiZDY4OWIzMTktMDM5OC00ZTRjLTkyYmMtN2M1YTkxNzVkNDEyIn0.OvPQb_nipM02O5NB88dgnVYsVd7RD93xj7NbK9X-sMiatRGeVOGMgjBr2ZQGBBRXcHbSObXt9hFYhGXlBcJhPg"/>
                     </http>
                 </request>
             </transaction>
