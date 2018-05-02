@@ -14,6 +14,9 @@ def getTime():
     return int(round(time.time()))
 
 
+if not os.path.exists('./files'):
+    os.system('mkdir files')
+
 fileNames = []
 
 MB = 1024*1024  # 1MB
