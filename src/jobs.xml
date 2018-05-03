@@ -35,20 +35,29 @@
         <option name="max_retries" value="0" />
     </options>
     <sessions>
-        <session name="get" probability="50" type="ts_http">
-            <transaction name="get">
+        <session name="getjob" probability="34" type="ts_http">
+            <transaction name="getjob">
                 <request>
-                    <http url="/api/notifications/all" method="GET" version="1.1">
+                    <http url="/api/jobs/jobListing?jobId=1" method="GET" version="1.1">
                         <http_header name="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1NTY5Nzc5LCJpYXQiOjE1MjUyMDk3NzksImVtYWlsIjoidXNlcjJAZW1haWwuY29tIiwianRpIjoiMTQyMDM0YWQtYzQ3Mi00MGFhLWFjZDMtOTNkM2YwYzY4MWI4In0.UDmRwbLmk8BoF-x1H4pFuu5E_3MlVB-TVxLtLDl94vF63bhUycnDfUmulBLLS_DGtY-VKySTZw4A8aBH-PeBDQ"/>
                     </http>
                 </request>
             </transaction>
         </session>
-        <session name="markread" probability="50" type="ts_http">
-            <transaction name="markread">
+        <session name="getAppliedJobs" probability="33" type="ts_http">
+            <transaction name="job">
                 <request>
-                    <http url="/api/notifications/markRead" method="GET" version="1.1">
+                    <http url="/api/jobs/viewAppliedJobs" method="GET" version="1.1">
                         <http_header name="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1NTY5Nzc5LCJpYXQiOjE1MjUyMDk3NzksImVtYWlsIjoidXNlcjJAZW1haWwuY29tIiwianRpIjoiMTQyMDM0YWQtYzQ3Mi00MGFhLWFjZDMtOTNkM2YwYzY4MWI4In0.UDmRwbLmk8BoF-x1H4pFuu5E_3MlVB-TVxLtLDl94vF63bhUycnDfUmulBLLS_DGtY-VKySTZw4A8aBH-PeBDQ"/>
+                    </http>
+                </request>
+            </transaction>
+        </session>
+        <session name="post" probability="33" type="ts_http">
+            <transaction name="post">
+                <request>
+                    <http url="/api/recommendations/articles" method="GET" version="1.1">
+                        <http_header name="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1MTk1OTEyLCJpYXQiOjE1MjUxOTIzMTIsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwianRpIjoiZDY4OWIzMTktMDM5OC00ZTRjLTkyYmMtN2M1YTkxNzVkNDEyIn0.KiNQGfMPqq52cUkcd60WIU--VsJnXlSSj8FoM_hcTATbmdj-EQJ5Ka2Z80An_dhaYHKyFOVUFGG7wYN9FThjYw"/>
                     </http>
                 </request>
             </transaction>

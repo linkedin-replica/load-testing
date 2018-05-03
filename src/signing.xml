@@ -14,19 +14,19 @@
 
     <load>
         <arrivalphase phase="1" duration="30" unit="second">
-            <users arrivalrate="100" unit="second"></users>
+            <users arrivalrate="30" unit="second"></users>
         </arrivalphase>
         <arrivalphase phase="2" duration="30" unit="second">
-            <users arrivalrate="500" unit="second"></users>
-        </arrivalphase>
-        <arrivalphase phase="3" duration="30" unit="second">
-            <users arrivalrate="1000" unit="second"></users>
-        </arrivalphase>
-        <arrivalphase phase="4" duration="30" unit="second">
             <users arrivalrate="100" unit="second"></users>
         </arrivalphase>
+        <arrivalphase phase="3" duration="30" unit="second">
+            <users arrivalrate="200" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="4" duration="30" unit="second">
+            <users arrivalrate="50" unit="second"></users>
+        </arrivalphase>
         <arrivalphase phase="5" duration="600" unit="second">
-            <users arrivalrate="300" unit="second"></users>
+            <users arrivalrate="100" unit="second"></users>
         </arrivalphase>
     </load>
 
@@ -36,7 +36,20 @@
     </options>
 
     <sessions>
-        <session name="login" probability="50" type="ts_http">
+        <session name="register" probability="5" type="ts_http">
+            <setdynvars sourcetype="random_string" length="20">
+                <var name="rndstring1" />
+            </setdynvars>
+            <transaction name="register">
+                <request subst="true">
+                    <http url="/api/signing/signUp" method="POST" version="1.1"
+                        content_type='application/json'
+                        contents='{&quot;firstName&quot;: &quot;fName&quot;, &quot;lastName&quot;: &quot;lName&quot;, &quot;email&quot;: &quot;email%%_rndstring1%%@email.com&quot;, &quot;password&quot;: &quot;password&quot;}'>
+                    </http>
+                </request>
+            </transaction>
+        </session>
+        <session name="login" probability="60" type="ts_http">
             <transaction name="login">
                 <request>
                     <http url="/api/signing/signIn" method="POST" version="1.1"
@@ -46,7 +59,7 @@
                 </request>
             </transaction>
         </session>
-        <session name="logout" probability="50" type="ts_http">
+        <session name="logout" probability="35" type="ts_http">
             <transaction name="logout">
                 <request>
                     <http url="/api/signing/signOut" method="GET" version="1.1">
