@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/share/tsung/tsung-1.0.dtd" [] >
+<tsung loglevel="info">
+    <clients>
+        <client host="localhost"  maxusers="1024" use_controller_vm="true"/>
+    </clients>
+    <servers>
+        <server host="localhost" port="8081" type="tcp"/>
+    </servers>
+
+    <monitoring>
+        <monitor host="localhost" type="erlang"></monitor>
+    </monitoring>
+
+    <load>
+        <arrivalphase phase="1" duration="30" unit="second">
+            <users arrivalrate="100" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="2" duration="30" unit="second">
+            <users arrivalrate="500" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="3" duration="30" unit="second">
+            <users arrivalrate="1000" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="4" duration="30" unit="second">
+            <users arrivalrate="100" unit="second"></users>
+        </arrivalphase>
+        <arrivalphase phase="5" duration="600" unit="second">
+            <users arrivalrate="300" unit="second"></users>
+        </arrivalphase>
+    </load>
+
+    <options>
+        <option name="connect_timeout" value="4000" />
+        <option name="max_retries" value="0" />
+    </options>
+    <sessions>
+        <session name="view-jobs" probability="34" type="ts_http">
+            <transaction name="view-jobs">
+                <!--view jobListing-->
+                <request>
+                    <http url="/api/jobs/jobListing?jobId=1" method="GET" version="1.1">
+                        <http_header named="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1MTk1OTEyLCJpYXQiOjE1MjUxOTIzMTIsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwianRpIjoiZDY4OWIzMTktMDM5OC00ZTRjLTkyYmMtN2M1YTkxNzVkNDEyIn0.KiNQGfMPqq52cUkcd60WIU--VsJnXlSSj8FoM_hcTATbmdj-EQJ5Ka2Z80An_dhaYHKyFOVUFGG7wYN9FThjYw"/>
+                    </http>
+                </request>
+                <!--user view applied jobs -->
+                <request>
+                    <http url="/api/jobs/viewAppliedJobs" method="GET" version="1.1">
+                        <http_header named="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1MTk1OTEyLCJpYXQiOjE1MjUxOTIzMTIsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwianRpIjoiZDY4OWIzMTktMDM5OC00ZTRjLTkyYmMtN2M1YTkxNzVkNDEyIn0.KiNQGfMPqq52cUkcd60WIU--VsJnXlSSj8FoM_hcTATbmdj-EQJ5Ka2Z80An_dhaYHKyFOVUFGG7wYN9FThjYw"/>
+                    </http>
+                </request>
+                <!--user view saved jobs -->
+                <request>
+                    <http url="/api/jobs/viewSavedJobs" method="GET" version="1.1">
+                        <http_header named="access-token" value="eyJhbGciOiJIUzUxMiJ9.eyJzY29wZSI6InNlbGYvZ3JvdXBzL2FkbWlucyIsImlzcyI6ImxpbmtlZGluLmxvZ2luIiwiZXhwIjoxNTI1MTk1OTEyLCJpYXQiOjE1MjUxOTIzMTIsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwianRpIjoiZDY4OWIzMTktMDM5OC00ZTRjLTkyYmMtN2M1YTkxNzVkNDEyIn0.KiNQGfMPqq52cUkcd60WIU--VsJnXlSSj8FoM_hcTATbmdj-EQJ5Ka2Z80An_dhaYHKyFOVUFGG7wYN9FThjYw"/>
+                    </http>
+                </request>
+            </transaction>
+        </session>
+    </sessions>
+</tsung>
